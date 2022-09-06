@@ -1,0 +1,13 @@
+PKG nginx php82 wordpress
+#CP root /
+
+MOUNT /usr/ports usr/ports nullfs ro 0 0 
+
+SYSRC php_fpm_enable=YES
+SYSRC nginx_enable=YES
+
+SERVICE php-fpm start
+SERVICE nginx start
+
+#CMD /root/bootstrap-wp.sh
+
