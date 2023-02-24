@@ -18,7 +18,8 @@ CMD ln -s /usr/local/etc/git_config/php/${config}.conf /usr/local/etc/php-fpm.d/
 
 #Create additional Dirs
 CMD mkdir -p /www/vhosts
-CMD chown www:www /www/vhosts
+CMD mkdir -p /www/vhosts/${config}
+CMD chown -R www:www /www/vhosts
 
 SYSRC php_fpm_enable=YES
 SYSRC nginx_enable=YES
