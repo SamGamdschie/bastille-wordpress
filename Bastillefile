@@ -1,9 +1,9 @@
 ARG php-version=82
-ARG config=website.conf
+ARG config=website
 
 PKG nginx htop php${php-version} wordpress
 
-CMD mkdr -p /www/certificates 
+CMD mkdir -p /www/certificates 
 CMD mkdir -p /usr/local/etc/git_config/nginx
 CMD mkdir -p /usr/local/etc/git_config/php
 
@@ -13,8 +13,8 @@ MOUNT /werzel/server_config/php usr/local/etc/git_config/php nullfs ro 0 0
 
 # Link Configurations 
 CMD rm -rf /usr/local/etc/nginx/nginx.conf
-CMD ln -s /usr/local/etc/git_config/nginx/${config} /usr/local/etc/nginx/nginx.conf
-CMD ln -s /usr/local/etc/git_config/php/${config} /usr/local/etc/php-fpm.d/${config}
+CMD ln -s /usr/local/etc/git_config/nginx/${config}.conf /usr/local/etc/nginx/nginx.conf
+CMD ln -s /usr/local/etc/git_config/php/${config}.conf /usr/local/etc/php-fpm.d/${config}.conf
 
 #Create additional Dirs
 CMD mkdir -p /www/vhosts
