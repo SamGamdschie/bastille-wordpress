@@ -1,7 +1,24 @@
-PKG nginx php82 wordpress
-#CP root /
+ARG php-version=82
+ARG config=website.conf
 
-MOUNT /usr/ports usr/ports nullfs ro 0 0 
+PKG nginx htop php${php-version} wordpress
+
+CMD mkdr -p /www/certificates 
+CMD mkdir -p /usr/local/etc/git_config/nginx
+CMD mkdir -p /usr/local/etc/git_config/php
+
+MOUNT /werzel/certificates www/certificates nullfs ro 0 0
+MOUNT /werzel/server_config/nginx usr/local/etc/git_config/nginx nullfs ro 0 0
+MOUNT /werzel/server_config/php usr/local/etc/git_config/php nullfs ro 0 0
+
+# Link Configurations 
+CMD rm -rf /usr/local/etc/nginx/nginx.conf
+CMD ln -s /usr/local/etc/git_config/nginx/${config} /usr/local/etc/nginx/nginx.conf
+CMD ln -s /usr/local/etc/git_config/php/${config} /usr/local/etc/php-fpm.d/${config}
+
+#Create additional Dirs
+CMD mkdir -p /www/vhosts
+CMD chown www:www /www/vhosts
 
 SYSRC php_fpm_enable=YES
 SYSRC nginx_enable=YES
