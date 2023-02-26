@@ -1,4 +1,4 @@
-ARG php-version=82
+ARG php-version=81
 ARG config=website
 
 PKG nginx htop php${php-version} wordpress
@@ -28,4 +28,3 @@ SERVICE php-fpm start
 SERVICE nginx start
 
 #CMD /root/bootstrap-wp.sh
-
