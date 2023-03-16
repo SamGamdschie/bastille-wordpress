@@ -17,7 +17,11 @@ CMD ln -s /usr/local/etc/git_config/nginx/${config}.conf /usr/local/etc/nginx/ng
 CMD ln -s /usr/local/etc/git_config/php/${config}.conf /usr/local/etc/php-fpm.d/${config}.conf
 
 #Create additional Dirs
+#Create additional Dirs for TMP / Session
 CMD mkdir -p /www/vhosts
+CMD mkdir -p /www/vhosts/tmp
+CMD mkdir -p /www/vhosts/sessions
+CMD mkdir -p /www/vhosts/upload_tmp
 CMD mkdir -p /www/vhosts/${config}
 CMD chown -R www:www /www/vhosts
 
