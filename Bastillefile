@@ -3,9 +3,9 @@ ARG config=website
 ARG mailip=10.0.0.10
 
 PKG nginx htop 
-PKG php${php-version} php${php-version}-curl php${php-version}-exif php${php-version}-fileinfo php${php-version}-ftp 
-PKG php${php-version}-gd php${php-version}-mysqli php${php-version}-pecl-imagick-im7 php${php-version}-tokenizer
-PKG php${php-version}-xml php${php-version}-zip php${php-version}-zlib
+PKG php${php-version} php${php-version}-extensions 
+PKG php${php-version}-curl php${php-version}-exif php${php-version}-fileinfo php${php-version}-ftp php${php-version}-mbstring
+PKG php${php-version}-gd php${php-version}-mysqli php${php-version}-pecl-imagick-im7 php${php-version}-zip php${php-version}-zlib
 #PKG wordpress => will be installed manuall via directory /www/vhosts/${config}
 
 CMD mkdir -p /www/certificates 
@@ -23,7 +23,6 @@ CMD rm -rf /usr/local/etc/nginx/nginx.conf
 CMD ln -s /usr/local/etc/git_config/nginx/${config}.conf /usr/local/etc/nginx/nginx.conf
 CMD ln -s /usr/local/etc/git_config/php/${config}.conf /usr/local/etc/php-fpm.d/${config}.conf
 
-#Create additional Dirs
 #Create additional Dirs for TMP / Session
 CMD mkdir -p /www/vhosts
 CMD mkdir -p /www/vhosts/tmp
