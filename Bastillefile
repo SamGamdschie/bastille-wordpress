@@ -6,6 +6,7 @@ PKG nginx htop
 PKG php${php-version} php${php-version}-extensions 
 PKG php${php-version}-curl php${php-version}-exif php${php-version}-fileinfo php${php-version}-ftp php${php-version}-mbstring
 PKG php${php-version}-gd php${php-version}-mysqli php${php-version}-pecl-imagick php${php-version}-zip php${php-version}-zlib
+PKG php${php-version}-intl
 #PKG wordpress => will be installed manuall via directory /www/vhosts/${config}
 
 CMD mkdir -p /www/certificates 
