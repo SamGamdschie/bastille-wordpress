@@ -1,15 +1,15 @@
-ARG php-version=82
+ARG php-version=84
 ARG config=website
 ARG mailip=10.0.0.10
 
-PKG nginx htop 
-PKG php${php-version} php${php-version}-extensions 
+PKG nginx htop
+PKG php${php-version} php${php-version}-extensions
 PKG php${php-version}-curl php${php-version}-exif php${php-version}-fileinfo php${php-version}-ftp php${php-version}-mbstring
 PKG php${php-version}-gd php${php-version}-mysqli php${php-version}-pecl-imagick php${php-version}-zip php${php-version}-zlib
 PKG php${php-version}-intl
 #PKG wordpress => will be installed manuall via directory /www/vhosts/${config}
 
-CMD mkdir -p /www/certificates 
+CMD mkdir -p /www/certificates
 CMD mkdir -p /usr/local/etc/git_config/nginx
 CMD mkdir -p /usr/local/etc/git_config/php
 CMD mkdir -p /www/vhosts/${config}
@@ -19,7 +19,7 @@ MOUNT /werzel/server_config/nginx usr/local/etc/git_config/nginx nullfs ro 0 0
 MOUNT /werzel/server_config/php usr/local/etc/git_config/php nullfs ro 0 0
 MOUNT /werzel/${config} www/vhosts/${config} nullfs rw 0 0
 
-# Link Configurations 
+# Link Configurations
 CMD rm -rf /usr/local/etc/nginx/nginx.conf
 CMD ln -s /usr/local/etc/git_config/nginx/${config}.conf /usr/local/etc/nginx/nginx.conf
 CMD ln -s /usr/local/etc/git_config/php/${config}.conf /usr/local/etc/php-fpm.d/${config}.conf
